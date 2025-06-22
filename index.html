@@ -215,17 +215,26 @@
     "project5.html"
   ];
 
-  const descElem = document.getElementById("carouselProject1-description");
-  const carousel = document.getElementById("carouselProject1");
+ // 获取当前激活项的索引
+function getActiveIndex(carouselElement) {
+  const items = carouselElement.querySelectorAll('.carousel-item');
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].classList.contains('active')) {
+      return i;
+    }
+  }
+  return 0;
+}
 
-  // 初始显示
-  descElem.innerHTML = `<p>${descriptions[0]} <a href='${links[0]}' target='_blank'>View details</a></p>`;
+// 设置初始描述
+const currentIndex = getActiveIndex(carousel);
+descElem.innerHTML = `<p>${descriptions[currentIndex]} <a href='${links[currentIndex]}' target='_blank'>View details</a></p>`;
 
-  // 每次滚动后更新描述与链接
-  carousel.addEventListener("slid.bs.carousel", function (e) {
-    const i = e.to;
-    descElem.innerHTML = `<p>${descriptions[i]} <a href='${links[i]}' target='_blank'>View details</a></p>`;
-  });
+// 每次滚动后更新描述与链接
+carousel.addEventListener("slid.bs.carousel", function (e) {
+  const i = e.to;
+  descElem.innerHTML = `<p>${descriptions[i]} <a href='${links[i]}' target='_blank'>View details</a></p>`;
+});
 </script>
   
             <hr class="m-0" />
