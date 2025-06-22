@@ -206,10 +206,25 @@
     "A blockchain game inspired by Pokémon.",
     "This is a Diablo-like RPG game."
   ];
+
+  const links = [
+    "project1.html",
+    "project2.html",
+    "project3.html",
+    "project4.html",
+    "project5.html"
+  ];
+
   const descElem = document.getElementById("carouselProject1-description");
   const carousel = document.getElementById("carouselProject1");
+
+  // 初始显示
+  descElem.innerHTML = `<p>${descriptions[0]} <a href='${links[0]}' target='_blank'>View details</a></p>`;
+
+  // 每次滚动后更新描述与链接
   carousel.addEventListener("slid.bs.carousel", function (e) {
-    descElem.innerHTML = `<p>${descriptions[e.to]} <a href='project1.html' target='_blank'>View details</a></p>`;
+    const i = e.to;
+    descElem.innerHTML = `<p>${descriptions[i]} <a href='${links[i]}' target='_blank'>View details</a></p>`;
   });
 </script>
   
